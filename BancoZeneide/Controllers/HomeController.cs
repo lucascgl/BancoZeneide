@@ -17,7 +17,8 @@ namespace BancoZeneide.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Este é um site para administração de clientes do Bela & Cia.";
+            ViewData["Dona"] = "Zeneide Rosa Coutinho";
 
             return View();
         }
