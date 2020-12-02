@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BancoZeneide.Models;
-using BancoZeneide.Models.ViewModels;
 
 namespace BancoZeneide.Controllers
 {
