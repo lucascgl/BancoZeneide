@@ -14,6 +14,11 @@ namespace BancoZeneide.Data
         {
         }
 
-        public DbSet<BancoZeneide.Models.Cliente> Cliente { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Vendedor> Vendedor { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<Pet> Pet { get; set; }
+        public DbSet<Produto> Produto { get; set; }
     }
 }

@@ -3,14 +3,16 @@ using System;
 using BancoZeneide.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BancoZeneide.Migrations
 {
     [DbContext(typeof(BancoZeneideContext))]
-    partial class BancoZeneideContextModelSnapshot : ModelSnapshot
+    [Migration("20201202181516_OrtherEntities")]
+    partial class OrtherEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
