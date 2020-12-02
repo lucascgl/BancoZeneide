@@ -36,8 +36,10 @@ namespace BancoZeneide
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+
             services.AddDbContext<BancoZeneideContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("BancoZeneideContext")));
+                options.UseMySql(Configuration.GetConnectionString("BancoZeneideContext"), builder =>
+                    builder.MigrationsAssembly("BancoZeneide")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
