@@ -39,6 +39,9 @@ namespace BancoZeneide.Models
         public string NomeVendedor { get; set; }
         public string CpfVendedor { get; set; }
         public DateTime DataInicio { get; set; }
+        public DateTime Aniversário { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
 
         [Key]
         public int IdVendedor { get; set; }
