@@ -36,9 +36,16 @@ namespace BancoZeneide.Services
 
         public async Task RemoveAsync(int id)
         {
+            try 
+            { 
             var obj = await _context.Vendedor.FindAsync(id);
             _context.Vendedor.Remove(obj);
             await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException("Não posso deletar o vendedor porque ele(a) tem vendas");
+            }
         }
 
         public async Task UpdateAsync(Vendedor obj)
