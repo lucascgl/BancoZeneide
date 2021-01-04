@@ -34,6 +34,10 @@ namespace BancoZeneide.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Criar(Vendedor vendedor)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(vendedor);
+            }
             _vendedorService.Insert(vendedor);
             return RedirectToAction(nameof(Index));
         }
@@ -98,6 +102,12 @@ namespace BancoZeneide.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Editar(int id, Vendedor vendedor)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View(vendedor);
+            }
+
             if (id != vendedor.IdVendedor)
             {
                 return RedirectToAction(nameof(Error), new { mensagem = "Os Ids não correspondem" });

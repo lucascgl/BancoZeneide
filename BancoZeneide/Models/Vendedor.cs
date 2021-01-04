@@ -38,6 +38,8 @@ namespace BancoZeneide.Models
         public ICollection<Pedido> Pedido { get; set; } = new List<Pedido>();
 
         [Display(Name = "Nome do Vendedor")]
+        [Required(ErrorMessage = "O {0} é necessário")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} nome deve ser entre {2} e {1}")]
         public string NomeVendedor { get; set; }
 
         [Display(Name = "CPF do Vendedor")]
@@ -53,8 +55,10 @@ namespace BancoZeneide.Models
         public DateTime Aniversário { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Digite um email válido")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "A {0} é necessária")]
         public string Senha { get; set; }
 
         [Key]
