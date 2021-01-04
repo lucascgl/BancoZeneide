@@ -32,9 +32,14 @@ namespace BancoZeneide.Models
         public Pet Pet { get; set; }
         public ICollection<Produto> Produto { get; set; } = new List<Produto>();
         public Categoria Categoria { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy")]
         public DateTime DataVenda { get; set; }
+
         public int QuantidadeItensComprada { get; set; }
         public double ValorTotal { get; set; }
+
+        [DisplayFormat(DataFormatString ="{0:F2}")]
         public double Amount { get; internal set; }
 
 

@@ -34,5 +34,23 @@ namespace BancoZeneide.Services
                 .OrderByDescending(x => x.DataVenda)
                 .ToListAsync();
         }
+
+        public async Task<List<IGrouping<Categoria, Pedido>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.Pedido select obj;
+            if (minDate.HasValue)
+            {
+                result = result.Where(x => x.DataVenda >= minDate.Value);
+            }
+            if (maxDate.HasValue)
+            {
+                result = result.Where(x => x.DataVenda <= maxDate.Value);
+            }
+            return await result
+                .Include(x => x.Vendedor)
+                .OrderByDescending(x => x.DataVenda)
+                .GroupBy (x => x.Categoria)
+                .ToListAsync();
+        }
     }
 }

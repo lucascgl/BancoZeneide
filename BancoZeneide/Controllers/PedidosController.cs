@@ -36,9 +36,20 @@ namespace BancoZeneide.Controllers
             var result = await _pedidosService.FindByDateAsync(minDate, maxDate);
             return View(result);
         }
-            public IActionResult GroupingSearch()
+            public async Task<IActionResult> GroupingSearchAsync(DateTime? minDate, DateTime? maxDate)
             {
-                return View();
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
             }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+            ViewData["minDate"] = minDate.Value.ToString("dd-MM-yyyy");
+            ViewData["maxDate"] = minDate.Value.ToString("dd-MM-yyyy");
+            var result = await _pedidosService.FindByDateAsync(minDate, maxDate);
+            return View(result);
+        }
         }
     }

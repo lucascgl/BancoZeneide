@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using 
 
 namespace BancoZeneide.Models
 {
@@ -24,8 +25,6 @@ namespace BancoZeneide.Models
         public string NivelCategoria { get; set; }
         [Key]
         public int IdCategoria { get; set; }
-
-
 
     }
 }
