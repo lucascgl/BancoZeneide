@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BancoZeneide.Models;
@@ -41,13 +42,13 @@ namespace BancoZeneide.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { mensagem = "Id não foi fornecido" });
             }
 
             var obj = _vendedorService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { mensagem = "Id não encontrado" });
             }
 
             return View(obj);
@@ -65,13 +66,13 @@ namespace BancoZeneide.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { mensagem = "Id não foi fornecido" });
             }
 
             var obj = _vendedorService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { mensagem = "Id não encontrado" });
             }
 
             return View(obj);
@@ -81,13 +82,13 @@ namespace BancoZeneide.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { mensagem = "Id não foi fornecido" });
             }
 
             var obj = _vendedorService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { mensagem = "Id não encontrado" });
             }
 
             return View(obj);
@@ -99,21 +100,27 @@ namespace BancoZeneide.Controllers
         {
             if (id != vendedor.IdVendedor)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { mensagem = "Os Ids não correspondem" });
             }
             try
             {
                 _vendedorService.Update(vendedor);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException)
+            catch (ApplicationException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { mensagem = e.Message });
             }
-            catch (DbConcurrencyException)
+        }
+
+        public IActionResult Error(string mensagem)
+        {
+            var viewModel = new ErrorViewModel
             {
-                return BadRequest();
-            }
+                Mensagem = mensagem,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }
