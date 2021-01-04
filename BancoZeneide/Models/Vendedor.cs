@@ -36,11 +36,25 @@ namespace BancoZeneide.Models
         }
 
         public ICollection<Pedido> Pedido { get; set; } = new List<Pedido>();
+
+        [Display(Name = "Nome do Vendedor")]
         public string NomeVendedor { get; set; }
+
+        [Display(Name = "CPF do Vendedor")]
         public string CpfVendedor { get; set; }
+
+        [Display(Name = "Data de cadastro")]
         public DateTime DataInicio { get; set; }
+
+
+        [Display(Name = "Data de aniversário")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Aniversário { get; set; }
+
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
         public string Senha { get; set; }
 
         [Key]
